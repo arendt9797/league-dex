@@ -4,7 +4,7 @@ import clsx from 'clsx';
 type TitleProps = {
   children: ReactNode;
   size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
-  color?: 'primary' | 'secondary' | 'normal';
+  color?: 'primary' | 'secondary' | 'normal' | 'white';
   className?: string;
 };
 
@@ -21,7 +21,8 @@ const Title = ({ children, size = 'lg', color = 'primary', className }: TitlePro
   const titleColor = {
     primary: 'text-primary',
     secondary: 'text-secondary',
-    normal: 'text-black'
+    normal: 'text-black',
+    white: 'text-white'
   }[color];
 
   return <h1 className={clsx('font-bold', titleSize, titleColor, className)}>{children}</h1>;

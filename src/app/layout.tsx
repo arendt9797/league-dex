@@ -12,7 +12,7 @@ import Text from '@/components/Text';
 // });
 
 export const metadata: Metadata = {
-  title: 'League Dex',
+  title: 'Dex of Legends',
   description: 'League of Legends unofficial information site'
 };
 
@@ -38,7 +38,7 @@ export default function RootLayout({
             <Text>로테이션</Text>
           </Link>
         </header>
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );
