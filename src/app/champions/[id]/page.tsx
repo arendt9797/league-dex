@@ -1,9 +1,10 @@
 import Spacer from '@/components/Spacer';
 import Text from '@/components/Text';
 import Title from '@/components/Title';
-import { RIOT_URL } from '@/constants/apis';
+import { RIOT_URL } from '@/constants/urls';
 import { ChampionDetail } from '@/types/Champions';
 import { fetchChampionDetail } from '@/utils/serverApi';
+import { removeHtmlTags } from '@/utils/removeHTMLTags';
 import Image from 'next/image';
 import SkillCard from './SpellCard';
 
@@ -18,7 +19,7 @@ type FetchChampionDetail = Awaited<ReturnType<typeof fetchChampionDetail>>;
 export function generateMetadata({ params }: Params) {
   return {
     title: `Meet the Legends: ${params.id}`,
-    description: `챔피언 ${params.id}를 소개하는 페이지`,
+    description: `챔피언 ${params.id}를 소개하는 페이지`
   };
 }
 
@@ -48,7 +49,7 @@ const ChampionDetailPage = async ({ params }: Params) => {
         </Title>
         <Spacer size="lg" />
         <Text size="md" color="white">
-          {detail.lore}
+          {removeHtmlTags(detail.lore)}
         </Text>
       </div>
       <Spacer size="md" />

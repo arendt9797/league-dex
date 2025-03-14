@@ -1,11 +1,20 @@
 'use server';
 
-import { RIOT_URL } from '@/constants/apis';
+import { RIOT_URL } from '@/constants/urls';
 import { Champion, ChampionDetail, Spell } from '@/types/Champions';
 import { Item } from '@/types/Items';
 
+// version
+export const fetchVersion = async ():Promise<string> => {
+  const response = await fetch(RIOT_URL.VERSIONS);
+  const data = await response.json();
+  return data[0]
+}
+
+// SSG
 export const fetchItemList = async (): Promise<Record<string, Item>> => {
-  const response = await fetch(`${RIOT_URL.DATA}/item.json`, {
+  const VERSION = await fetchVersion();
+  const response = await fetch(`${RIOT_URL.BASE}${VERSION}${RIOT_URL.DATA}/item.json`, {
     cache: 'force-cache'
   });
   const data = await response.json();
@@ -27,8 +36,10 @@ export const fetchItemList = async (): Promise<Record<string, Item>> => {
   }, {} as Record<string, Item>);
 };
 
+// ISR
 export const fetchChampionList = async (): Promise<Record<string, Champion>> => {
-  const response = await fetch(`${RIOT_URL.DATA}/champion.json`, {
+  const VERSION = await fetchVersion();
+  const response = await fetch(`${RIOT_URL.BASE}${VERSION}${RIOT_URL.DATA}/champion.json`, {
     next: {
       revalidate: 86400
     }
@@ -52,8 +63,10 @@ export const fetchChampionList = async (): Promise<Record<string, Champion>> => 
   }, {} as Record<string, Champion>);
 };
 
+// SSR
 export const fetchChampionDetail = async (id: string): Promise<Record<string, ChampionDetail>> => {
-  const response = await fetch(`${RIOT_URL.DATA}/champion/${id}.json`, {
+  const VERSION = await fetchVersion();
+  const response = await fetch(`${RIOT_URL.BASE}${VERSION}${RIOT_URL.DATA}/champion/${id}.json`, {
     cache: 'no-store'
   });
   const data = await response.json();
