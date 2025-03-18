@@ -8,8 +8,6 @@ import { removeHtmlTags } from '@/utils/removeHTMLTags';
 import Image from 'next/image';
 import SkillCard from './SpellCard';
 
-export const dynamic = "force-dynamic"
-
 type Params = {
   params: {
     id: string;
