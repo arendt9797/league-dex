@@ -10,7 +10,8 @@ const nextConfig = {
       }
     ],
     formats: ['image/avif', 'image/webp']
-  }
+  },
+  output: "standalone"
 };
 
 export default nextConfig;
