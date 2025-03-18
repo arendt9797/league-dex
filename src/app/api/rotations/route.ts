@@ -10,7 +10,7 @@ export const GET = async () => {
       'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
       'Accept-Charset': 'application/x-www-form-urlencoded; charset=UTF-8',
       Origin: 'https://developer.riotgames.com',
-      'X-Riot-Token': 'RGAPI-b0223e0c-fcd2-4baf-a348-601ac3a4bc10'
+      'X-Riot-Token': `${process.env.RIOT_API_KEY}`
     }
   });
   const rotationData = await rotationResponse.json()
